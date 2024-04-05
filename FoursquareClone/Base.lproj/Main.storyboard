@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -245,6 +246,7 @@
                     <navigationItem key="navigationItem" id="E1A-IY-IXh"/>
                     <connections>
                         <outlet property="placeAtmosphereText" destination="duP-Qi-LHR" id="tzP-4Q-ZbD"/>
+                        <outlet property="placeImageView" destination="Igu-ie-VV6" id="Nie-6g-1eg"/>
                         <outlet property="placeNameText" destination="xLc-Rt-6Ie" id="skh-Gn-VWU"/>
                         <outlet property="placeTypeText" destination="NOb-OA-GpU" id="OdS-Ph-pT8"/>
                         <segue destination="kpk-dH-AjI" kind="presentation" identifier="toMapVC" modalPresentationStyle="fullScreen" id="SxA-ur-nei"/>
