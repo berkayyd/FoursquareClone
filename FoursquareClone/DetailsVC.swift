@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import Parse
 
-class DetailsVC: UIViewController {
+class DetailsVC: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var detailsImageView: UIImageView!
     
@@ -27,7 +27,7 @@ class DetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        detailsMapView.delegate = self
         getDataFromParse()
     }
     
@@ -96,6 +96,64 @@ class DetailsVC: UIViewController {
             }
             
         }
-    }
 
+    }
+    func mapView(_ mapView: MKMapView, viewFor annotation: any MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
+        
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+            pinView?.canShowCallout = true
+            let button = UIButton(type: .detailDisclosure)
+            pinView?.rightCalloutAccessoryView = button
+        }else {
+            pinView?.annotation = annotation
+        }
+        
+        return pinView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if self.chosenLongitude != 0.0 && self.chosenLatitude != 0.0 {
+            let requestLocation = CLLocation(latitude: self.chosenLatitude, longitude: self.chosenLongitude)
+            //It uses CLGeocoder() to perform reverse geocoding on the given location, converting the coordinates into a human-readable address (placemark).
+            CLGeocoder().reverseGeocodeLocation(requestLocation) { (placemarks, error) in
+                if let placemark = placemarks {
+                //When we write if let placemark = placemarks { }, we're checking if placemarks is not nil.
+                if placemark.count > 0 {
+                    /*by accessing placemarks[0], we're simply getting the first CLPlacemark object from the array. In many cases, reverse geocoding a location will return only one placemark, but it's possible to receive multiple placemarks if the location corresponds to multiple addresses or points of interest.
+                     
+                     In this code, it's assumed that we're interested in the first placemark returned by the reverse geocoding operation, so we're accessing it directly. However, in a more robust implementation, you might want to handle cases where there are multiple placemarks returned and choose the most relevant one based on your application's requirements.*/
+                    let mkPlaceMark = MKPlacemark(placemark: placemark[0])
+                    let mapItem = MKMapItem(placemark: mkPlaceMark)
+                    mapItem.name = self.detailsNameLabel.text
+                                
+                    let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+                                
+                    mapItem.openInMaps(launchOptions: launchOptions)
+                    }
+                            
+                }
+            }
+                    
+        }
+        /*
+        guard let annotation = view.annotation else { return }
+            
+        let placemark = MKPlacemark(coordinate: annotation.coordinate)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = annotation.title ?? "Destination"
+            
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        mapItem.openInMaps(launchOptions: launchOptions)
+        */
+        
+         
+    }
 }
