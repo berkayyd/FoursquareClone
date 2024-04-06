@@ -7,14 +7,12 @@
 
 import UIKit
 import MapKit
+import Parse
 
 class MapVC: UIViewController , MKMapViewDelegate , CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     var locationManager = CLLocationManager()
-    
-    var chosenLatitude = ""
-    var chosenLongitude = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +45,8 @@ class MapVC: UIViewController , MKMapViewDelegate , CLLocationManagerDelegate {
             
             self.mapView.addAnnotation(annotation)
             
-            self.chosenLatitude = String(coordinates.latitude)
-            self.chosenLongitude = String(coordinates.longitude)
+            PlaceModel.sharedIntance.placeLatitude = String(coordinates.latitude)
+            PlaceModel.sharedIntance.placeLongitude = String(coordinates.longitude)
         }
         
     }
@@ -71,6 +69,29 @@ class MapVC: UIViewController , MKMapViewDelegate , CLLocationManagerDelegate {
     
     @objc func saveButtonClicked() {
         
+        let placeModel = PlaceModel.sharedIntance
+        var object = PFObject(className: "Places")
+        
+        object["name"] = placeModel.placeName
+        object["type"] = placeModel.placeType
+        object["atmosphere"] = placeModel.placeAtmosphere
+        object["latitude"] = placeModel.placeLatitude
+        object["longitude"] = placeModel.placeLongitude
+        
+        if let imageData = placeModel.placeImage.jpegData(compressionQuality: 0.5) {
+            object["image"] = PFFileObject(name: "images.jpg", data: imageData)
+        }
+        
+        object.saveInBackground { success, error in
+            if error != nil {
+                let error = UIAlertController(title: "ERROR!", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
+                error.addAction(okButton)
+                self.present(error, animated: true, completion: nil)
+            }else {
+                self.performSegue(withIdentifier: "fromMapVCtoPlacesVC", sender: nil)
+            }
+        }
     }
     
     @objc func backButtonClicked() {
