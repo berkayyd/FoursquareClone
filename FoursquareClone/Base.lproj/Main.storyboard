@@ -95,7 +95,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="DRB-3S-ZGZ">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <rect key="frame" x="0.0" y="44" width="393" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -125,15 +125,15 @@
             <objects>
                 <viewController id="uof-8p-Py5" customClass="DetailsVC" customModule="FoursquareClone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gNC-nZ-WKo">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3cB-U4-JHh">
-                                <rect key="frame" x="0.0" y="534" width="393" height="318"/>
+                                <rect key="frame" x="0.0" y="578" width="393" height="284"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlaceNameLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ud-C5-c5i">
-                                <rect key="frame" x="56" y="335" width="284" height="45"/>
+                                <rect key="frame" x="56" y="379" width="284" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="DbE-OE-q48"/>
                                 </constraints>
@@ -142,7 +142,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlaceTypeLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnY-z3-BU5">
-                                <rect key="frame" x="53" y="388" width="284" height="50"/>
+                                <rect key="frame" x="53" y="432" width="284" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="VQy-m4-KWr"/>
                                 </constraints>
@@ -151,7 +151,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlaceAtmosphere" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCg-ib-u32">
-                                <rect key="frame" x="53" y="446" width="284" height="50"/>
+                                <rect key="frame" x="53" y="490" width="284" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="C1U-fZ-Av0"/>
                                 </constraints>
@@ -160,7 +160,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6hZ-aM-GM1">
-                                <rect key="frame" x="0.0" y="91" width="393" height="205"/>
+                                <rect key="frame" x="0.0" y="135" width="393" height="205"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="205" id="pgs-D3-aJ2"/>
                                 </constraints>
@@ -205,7 +205,7 @@
             <objects>
                 <viewController id="t0a-eQ-2fA" customClass="AddPlaceVC" customModule="FoursquareClone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hpd-bO-8ga">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Place Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xLc-Rt-6Ie">
@@ -310,7 +310,7 @@
                     <navigationItem key="navigationItem" id="04K-9w-hfm"/>
                     <connections>
                         <outlet property="mapView" destination="M6s-l1-FtO" id="TYB-g8-xB1"/>
-                        <segue destination="Yg0-3p-T6D" kind="presentation" identifier="fromMapVCtoPlacesVC" modalPresentationStyle="fullScreen" id="L3K-GA-zTr"/>
+                        <segue destination="cUx-5A-Hm2" kind="presentation" identifier="fromMapVCtoPlacesVC" modalPresentationStyle="fullScreen" id="9ET-5t-xJU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ie3-aO-abE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -357,7 +357,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="L3K-GA-zTr"/>
+        <segue reference="9ET-5t-xJU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="selectPhoto" width="256" height="256"/>
